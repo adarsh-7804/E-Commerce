@@ -77,8 +77,13 @@ exports.googleLogin = async (req, res) => {
         console.log("JWT Token:", jwtToken)
         console.log("User:", user)
         res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            profilePic: user.profilePic,
+            isRoleSet: user.isRoleSet,
             token: jwtToken,
-            user: safeUser,
             requiresRoleSelection: !user.isRoleSet,
         })
     } catch (err) {
