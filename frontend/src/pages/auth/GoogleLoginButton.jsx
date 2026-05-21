@@ -30,7 +30,7 @@ const GoogleLoginButton = () => {
 
       dispatch(
         googleLoginSuccess({
-          user: res.data.user,
+          ...res.data,
           requiresRoleSelection: res.data.requiresRoleSelection,
         })
       );

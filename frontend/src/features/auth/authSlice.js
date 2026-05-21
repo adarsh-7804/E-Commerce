@@ -121,7 +121,7 @@ const authSlice = createSlice({
             state.error = null;
         },
         googleLoginSuccess: (state, action) => {
-            state.user = action.payload.user;
+            state.user = action.payload;
             state.loading = false;
             state.error = null;
             state.otpPending = false;
