@@ -352,8 +352,9 @@ const Cart = () => {
 
               {/* Checkout Button */}
               <button
+                title="In Production"
                 onClick={handleCheckoutClick}
-                className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3.5 rounded-xl transition-colors duration-200 text-sm"
+                className="w-full flex items-center pointer-events-none cursor-none justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3.5 rounded-xl transition-colors duration-200 text-sm"
               >
                 Proceed to Payment <FiArrowRight />
               </button>
