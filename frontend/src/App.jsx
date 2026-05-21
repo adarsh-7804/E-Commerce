@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import cart from './assets/cart.svg'
 import heroImg from './assets/hero.png'
 import Navbar from './components/layout/Navbar'
 import Home from './pages/Home'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import OTPVerification from './pages/auth/OTPVerification'
@@ -22,6 +22,12 @@ import SetPassword from './pages/auth/SetPassword'
 import ForgotPassword from './pages/auth/ForgotPassword'
 
 const App = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <>
     <Navbar />
