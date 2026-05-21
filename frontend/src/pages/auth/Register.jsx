@@ -5,6 +5,7 @@ import { registerUserThunk, clearError } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import GoogleLoginButton from "./GoogleLoginButton";
 
 
 const Register = () => {
@@ -79,7 +80,7 @@ const Register = () => {
       {/* Right side Form */}
       <div className="w-full lg:w-[55vw] min-h-screen bg-[#211c24] flex items-center justify-center p-5">
 
-        <div className="w-full max-w-md h-[60vh] -mt-[6vw]  bg-[#EDEDED] rounded-2xl p-8 shadow-xl">
+        <div className="w-full max-w-md  -mt-[6vw]  bg-[#EDEDED] rounded-2xl p-8 shadow-xl">
 
           <h2 className="text-3xl font-bold text-center my-8">
             Register
@@ -139,8 +140,8 @@ const Register = () => {
               {loading ? "Registering..." : "Register"}
             </button>
 
-
-
+            <GoogleLoginButton />
+            
           </form>
 
           <p className="text-center mt-5">

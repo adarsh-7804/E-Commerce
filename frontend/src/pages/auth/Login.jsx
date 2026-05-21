@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUserThunk, clearError } from "../../features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import GoogleLoginButton from "./GoogleLoginButton";
 
 const Login = () => {
 
@@ -74,9 +75,9 @@ const Login = () => {
       </div>
 
       {/* Right side Form */}
-      <div className="w-full   lg:w-[55vw] bg-[#211c24] flex  justify-center p-5">
+      <div className="w-full   lg:w-[55vw] min-h-screen bg-[#211c24] flex items-center  justify-center p-5">
 
-        <div className="w-full h-[60vh]  mt-[7vw] max-w-md bg-[#EDEDED] rounded-2xl p-8 shadow-xl flex flex-col items-center justify-center">
+        <div className="w-full   mt-[7vw] max-w-md bg-[#EDEDED] rounded-2xl p-8 shadow-xl flex flex-col items-center justify-center">
 
           <h2 className="text-3xl font-bold text-center mb-8">
             Login
@@ -143,6 +144,8 @@ const Login = () => {
             >
               {loading ? "Logging in..." : "Login "}
             </button>
+
+            <GoogleLoginButton />
 
           </form>
 

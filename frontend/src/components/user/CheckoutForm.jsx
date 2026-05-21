@@ -51,10 +51,27 @@ const CheckoutForm = ({ items, totalAmount, onSuccess, address }) => {
           throw new Error('Failed to create payment intent: ' + JSON.stringify(paymentIntentResponse))
         }
 
-        // Step 2: Confirm Payment with Stripe (using newer API)
+        // Step 2: Confirm Payment with Stripe
+        const cardElement = elements.getElement(CardElement)
+        
+        if (!cardElement) {
+          throw new Error('Card element not found')
+        }
+
         const result = await stripe.confirmCardPayment(clientSecret, {
           payment_method: {
-            card: elements.getElement(CardElement),
+            card: cardElement,
+            billing_details: {
+              name: address?.name || 'Customer',
+              address: {
+                line1: address?.addressLine1 || '',
+                line2: address?.addressLine2 || '',
+                city: address?.city || '',
+                state: address?.state || '',
+                postal_code: address?.postalCode || '',
+                country: address?.country || 'IN',
+              },
+            },
           },
         })
 

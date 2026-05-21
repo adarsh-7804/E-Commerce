@@ -37,7 +37,7 @@ const OTPVerification = () => {
     }
   }, [user, requiresRoleSelection, navigate]);
 
-  // Timer countdown
+  
   useEffect(() => {
     if (timer <= 0) {
       setCanResend(true);
@@ -51,7 +51,6 @@ const OTPVerification = () => {
     return () => clearInterval(interval);
   }, [timer]);
 
-  // Clear error on unmount
   useEffect(() => {
     return () => {
       dispatch(clearError());
@@ -60,7 +59,6 @@ const OTPVerification = () => {
 
   const handleOTPChange = (e) => {
     const value = e.target.value;
-    // Only allow numbers and max 4 digits
     if (value === "" || (/^\d+$/.test(value) && value.length <= 4)) {
       setOtp(value);
     }
@@ -87,7 +85,7 @@ const OTPVerification = () => {
     setResendLoading(true);
     try {
       await dispatch(resendOTPThunk(userId)).unwrap();
-      setTimer(600); // Reset timer to 10 minutes
+      setTimer(600);
       setCanResend(false);
       setOtp("");
     } catch (err) {

@@ -40,13 +40,13 @@ export const registerUserThunk = createAsyncThunk(
 export const loginUserThunk = createAsyncThunk(
     "auth/loginUser",
 
-    async (userData, thunkAPI ) => {
+    async (userData, thunkAPI) => {
         try {
-            const data  = await loginUserAPI(userData);
+            const data = await loginUserAPI(userData);
 
             return data;
         } catch (err) {
-            return  thunkAPI.rejectWithValue(err.response.data.message || "Login Failed");
+            return thunkAPI.rejectWithValue(err.response.data.message || "Login Failed");
         }
     }
 )
@@ -118,13 +118,21 @@ const authSlice = createSlice({
             localStorage.removeItem("user");
         },
         clearError: (state) => {
-        state.error = null;
-    }
+            state.error = null;
+        },
+        googleLoginSuccess: (state, action) => {
+            state.user = action.payload.user;
+            state.loading = false;
+            state.error = null;
+            state.otpPending = false;
+            state.requiresRoleSelection =
+                action.payload.requiresRoleSelection || false;
+        },
     },
     extraReducers: (builder) => {
 
         builder
-            .addCase(registerUserThunk.pending , (state) => {
+            .addCase(registerUserThunk.pending, (state) => {
                 state.loading = true;
             })
             .addCase(registerUserThunk.fulfilled, (state, action) => {
@@ -136,7 +144,7 @@ const authSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload
             });
-        
+
         builder
             .addCase(loginUserThunk.pending, (state) => {
                 state.loading = true;
@@ -165,7 +173,7 @@ const authSlice = createSlice({
                 state.otpPending = false;
                 state.userId = null;
                 state.email = null;
-                
+
                 if (action.payload.requiresRoleSelection) {
                     state.requiresRoleSelection = true;
                     state.user = action.payload;
@@ -192,7 +200,7 @@ const authSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload;
             })
-            // })
+        // })
 
         builder
             .addCase(setRoleThunk.pending, (state) => {
@@ -225,6 +233,6 @@ const authSlice = createSlice({
     }
 })
 
-export const { logout, clearError } = authSlice.actions;
+export const { logout, clearError, googleLoginSuccess } = authSlice.actions;
 
 export default authSlice.reducer;
