@@ -14,8 +14,9 @@ const GoogleLoginButton = () => {
     try {
       console.log('Credential Response:', credentialResponse);
 
+      const API_URL = import.meta.env.VITE_API_URL || 'https://e-commerce-a2ab.onrender.com/api';
       const res = await axios.post(
-        'http://localhost:5000/api/auth/google',
+        `${API_URL}/auth/google`,
         { idToken: credentialResponse.credential }
       );
 

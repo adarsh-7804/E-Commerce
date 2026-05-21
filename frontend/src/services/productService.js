@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/products";
+// Pointing to your deployed backend or dev env
+const API_URL = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/products` : "https://e-commerce-a2ab.onrender.com/api/products";
 
 
 export const createProductAPI = async (productData, token) => {
